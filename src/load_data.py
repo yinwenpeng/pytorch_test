@@ -405,7 +405,7 @@ def get_SQUAD_examples(prefix, hypo_only=False):
 
 
 def get_MCTest_examples(prefix, hypo_only=False):
-    path = '/export/home/Dataset/para_entail_datasets/MCTest/'
+    path = '/home/wenpeng/datasets/MCTest-NLI/'
     filename = path+prefix+'_in_entail.txt'
     print('loading MCTest...', filename)
     readfile = codecs.open(filename, 'r', 'utf-8')
