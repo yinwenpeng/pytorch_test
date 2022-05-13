@@ -361,10 +361,15 @@ def convert_examples_to_features_concatenate(examples, label_list, max_seq_lengt
             other_3_examples_in_the_group = [ex_i for ex_i in sub_examples if ex_i.text_b != example.text_b]
             # for ex_i in sub_examples:
             #     if ex_i.text_b != example.text_b:
-            for ii in range(3):
+            tokens_b_concatenated = []
+            # tokens_b_concatenated.append(tokens_b+[sep_token]+tokens_b+[sep_token]+tokens_b+[sep_token]+tokens_b)
+            for ii in range(1):
                 random.shuffle(other_3_examples_in_the_group)
+                tail_seq = []
                 for ex_i in other_3_examples_in_the_group:
-                    tokens_b += [sep_token]+tokenizer.tokenize(ex_i.text_b)
+                    tail_seq += [sep_token]+tokenizer.tokenize(ex_i.text_b)
+                tokens_b_concatenated.append(tokens_b+[sep_token]+tail_seq)
+            for tokens_b in tokens_b_concatenated:
                 # Modifies `tokens_a` and `tokens_b` in place so that the total
                 # length is less than the specified length.
                 # Account for [CLS], [SEP], [SEP] with "- 3". " -4" for RoBERTa.
@@ -829,7 +834,7 @@ if __name__ == "__main__":
 
 '''
 
-CUDA_VISIBLE_DEVICES=1 python -u fine_tune_MCTest_concatenate.py --task_name rte --do_train --do_lower_case --data_label DUC --num_train_epochs 5 --train_batch_size 4 --eval_batch_size 64 --learning_rate 1e-6 --max_seq_length 512 --seed 42
+CUDA_VISIBLE_DEVICES=2 python -u fine_tune_MCTest_concatenate.py --task_name rte --do_train --do_lower_case --data_label DUC --num_train_epochs 5 --train_batch_size 4 --eval_batch_size 64 --learning_rate 1e-6 --max_seq_length 512 --seed 42
 
 
 '''
