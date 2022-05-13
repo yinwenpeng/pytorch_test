@@ -363,7 +363,7 @@ def convert_examples_to_features_concatenate(examples, label_list, max_seq_lengt
             #     if ex_i.text_b != example.text_b:
             tokens_b_concatenated = []
             # tokens_b_concatenated.append(tokens_b+[sep_token]+tokens_b+[sep_token]+tokens_b+[sep_token]+tokens_b)
-            for ii in range(5):
+            for ii in range(6):
                 random.shuffle(other_3_examples_in_the_group)
                 tail_seq = []
                 for ex_i in other_3_examples_in_the_group:
@@ -834,7 +834,7 @@ if __name__ == "__main__":
 
 '''
 
-CUDA_VISIBLE_DEVICES=3 python -u fine_tune_MCTest_concatenate.py --task_name rte --do_train --do_lower_case --data_label DUC --num_train_epochs 5 --train_batch_size 4 --eval_batch_size 64 --learning_rate 1e-6 --max_seq_length 512 --seed 42
+CUDA_VISIBLE_DEVICES=5 python -u fine_tune_MCTest_concatenate.py --task_name rte --do_train --do_lower_case --data_label DUC --num_train_epochs 5 --train_batch_size 4 --eval_batch_size 64 --learning_rate 1e-6 --max_seq_length 512 --seed 42
 
 
 '''
