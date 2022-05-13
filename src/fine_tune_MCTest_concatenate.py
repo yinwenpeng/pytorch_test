@@ -358,8 +358,12 @@ def convert_examples_to_features_concatenate(examples, label_list, max_seq_lengt
 
             tokens_b = tokenizer.tokenize(example.text_b)
             '''something added'''
-            for ex_i in sub_examples:
-                if ex_i.text_b != example.text_b:
+            other_3_examples_in_the_group = [ex_i for ex_i in sub_examples if ex_i.text_b != example.text_b]
+            # for ex_i in sub_examples:
+            #     if ex_i.text_b != example.text_b:
+            for ii in range(6):
+                random.shuffle(other_3_examples_in_the_group)
+                for ex_i in other_3_examples_in_the_group:
                     tokens_b += [sep_token]+tokenizer.tokenize(ex_i.text_b)
             # Modifies `tokens_a` and `tokens_b` in place so that the total
             # length is less than the specified length.
