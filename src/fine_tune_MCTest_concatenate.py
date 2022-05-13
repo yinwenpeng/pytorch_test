@@ -362,8 +362,8 @@ def convert_examples_to_features_concatenate(examples, label_list, max_seq_lengt
             # for ex_i in sub_examples:
             #     if ex_i.text_b != example.text_b:
             tokens_b_concatenated = []
-            # tokens_b_concatenated.append(tokens_b+[sep_token]+tokens_b+[sep_token]+tokens_b+[sep_token]+tokens_b)
-            for ii in range(6):
+            tokens_b_concatenated.append(tokens_b+[sep_token]+tokens_b+[sep_token]+tokens_b+[sep_token]+tokens_b)
+            for ii in range(1):
                 random.shuffle(other_3_examples_in_the_group)
                 tail_seq = []
                 for ex_i in other_3_examples_in_the_group:
